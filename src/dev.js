@@ -14,12 +14,13 @@ const fileUpdated = (done)=>{
   });
 };
 
-watcher(['/pages/**/*.md', '/posts/**/*.md', '/template.html'].map((fileName)=>__dirname+fileName), fileUpdated);
+watcher(['/pages/**/*.md', '/posts/**/*.md', '/template.html', '/rss.xml'].map((fileName)=>__dirname+fileName), fileUpdated);
 build(()=>{});
 
 const config = new server.Config;
 
 config.contentType.woff = 'application/x-font-woff';
+config.contentType.xml = 'text/xml';
 config.port = 8080;
 config.root = path.resolve(__dirname, '../');
 

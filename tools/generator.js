@@ -4,6 +4,8 @@ const glob = require('glob');
 const fs = require('fs');
 const path = require('path');
 const templateSource = fs.readFileSync(path.resolve(__dirname, '../src/', 'template.html')).toString();
+const rssSourcePath = path.resolve(__dirname, '../src/', 'rss.xml');
+const rssSource = fs.readFileSync(rssSourcePath).toString();
 const nasty = require('nasty-json');
 const pagesPath = path.resolve(__dirname, '../src/', 'pages');
 const postsPath = path.resolve(__dirname, '../src/', 'posts');
@@ -50,6 +52,7 @@ Handlebars.registerHelper('slice', function(context, block) {
 });
 
 const template = Handlebars.compile(templateSource, {noEscape: true});
+const rssTemplate = Handlebars.compile(rssSource, {noEscape: true});
 
 const DATE_FIELDS = [
   'published',
@@ -148,7 +151,12 @@ const loadAll = (callback)=>{
 const processPages = (pkg)=>{
   const toProcess = pkg.pages.concat(pkg.posts);
   const done = ()=>{
-    console.log('All done');
+    const rssContents = rssTemplate(pkg.posts);
+    const rssDestPath = outputPath+'/rss.xml';
+    console.log(rssSourcePath, '->', rssDestPath);
+    fs.writeFile(rssDestPath, rssContents, ()=>{
+      console.log('All done');
+    });
   }
   async.each(toProcess, (page, next)=>{
     console.log(page.sourcefile, '->', page.destinationfile);
