@@ -1,7 +1,8 @@
-<rss version="2.0">
-<channel>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
     <title>Anarchist Engineer</title>
     <link>https://anarchistengineer.github.io/</link>
+    <atom:link href="https://anarchistengineer.github.io/rss.xml" rel="self" type="application/rss+xml" />
     <description>Welcome to the site of the Anarchist Engineer. Here you will find projects, write-ups, and "Blog" posts that I work on, just because. This could be anything from software development to hardware hacks. I'd love to say that I will publish something every (x) days (that's not true, I'd hate to say that), but I'm not making any commitments.</description>
     {{#each posts}}
     <item>
@@ -12,5 +13,5 @@
       {{/if}}
     </item>
     {{/each}}
-</channel>
+  </channel>
 </rss>
