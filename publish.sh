@@ -84,14 +84,4 @@ if [[ $PUSH ]]; then
   git push origin master
 fi
 
-if [[ $PUBLISH && $ORIG_VERSION != $VERSION ]]; then
-  read -p "Are you sure your ready to publish? (y/n) " -n 1 -r
-  echo    # (optional) move to a new line
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    git subtree push --prefix site origin gh_pages
-  else
-    echo "Ok try again when your ready"
-  fi
-fi
-
 echo "Done"

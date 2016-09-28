@@ -4,7 +4,7 @@ const server = require('node-http-server');
 const path = require('path');
 
 const build = (callback)=>{
-  const child = fork('./tools/generator.js');
+  const child = fork(path.resolve(__dirname, '../tools/generator.js'));
   child.on('close', ()=>callback());
 };
 
@@ -14,13 +14,13 @@ const fileUpdated = (done)=>{
   });
 };
 
-watcher(['./pages/**/*.md', './posts/**/*.md', './index.html'], fileUpdated);
+watcher(['/pages/**/*.md', '/posts/**/*.md', '/template.html'].map((fileName)=>__dirname+fileName), fileUpdated);
 build(()=>{});
 
 const config = new server.Config;
 
 config.contentType.woff = 'application/x-font-woff';
 config.port = 8080;
-config.root = path.resolve(__dirname, 'site');
+config.root = path.resolve(__dirname, '../');
 
 server.deploy(config);

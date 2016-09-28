@@ -22,8 +22,8 @@ The structure looks like:
  * fonts/ - Web fonts
  * images/ - Images
  * js/ - JavaScript source files, haven't needed this yet
- * pages/ - Holds the source Markdown for the pages
- * site/ - Generated site
+ * src/pages/ - Holds the source Markdown for the pages
+ * src/posts/ - Holds the source Markdown for posts
  * solarized-dark-syntax/ - Syntax highlighter styles for code
  * style/ - Stylesheets
  * tools/ - Scripts and stuff
@@ -57,8 +57,9 @@ git init
 npm init
 {bla bla}
 npm install --save glob marky-markdown async mkdirp moment datejs node-http-server nodemon glob-watcher
-mkdir pages
-mkdir posts
+mkdir src
+mkdir src/pages
+mkdir src/posts
 mkdir images
 mkdir js
 mkdir style
@@ -72,17 +73,13 @@ cd ..
 
 ## Build script
 
-Next up was to create the tools/build.sh script that would do all the work like removing the old site/ creating a new one, coping over images, fonts, JavaScript, and styles.  It would then need to compile the syntax highlighting styles and copy those over to the site/style/ folder.  No default styles ship with marky-markdown and it took me forever to figure out that you can basically use any syntax highlighter styles for Atom with marky-markdown.  Cool!
+Next up was to create the tools/build.sh script that would do all the work like removing the old pages/ folder, creating a new one, rinse and repeat for posts/.  It would then need to compile the syntax highlighting styles and copy those over to the style/ folder.  No default styles ship with marky-markdown and it took me forever to figure out that you can basically use any syntax highlighter styles for Atom with marky-markdown.  Cool!
 
 ```sh
 #!/bin/bash
 
-rm -rf site
-mkdir site
-cp -r fonts/ site/fonts/
-cp -r images/ site/images/
-cp -r js/ site/js/
-cp -r style/ site/style/
+rm -rf posts/
+rm -rf pages/
 
 rm -f style/syntax.css
 cd solarized-dark-syntax/
@@ -181,7 +178,7 @@ I wanted a way to work on the Anarchist Engineer site without having to actually
 
 ```js
 "scripts": {
-  "dev": "tools/build.sh; nodemon dev"
+  "dev": "nodemon src/dev.js"
 },
 ```
 
@@ -194,7 +191,7 @@ const server = require('node-http-server');
 const path = require('path');
 
 const build = (callback)=>{
-  const child = fork('./tools/generator.js');
+  const child = fork(path.resolve(__dirname, '../tools/generator.js'));
   child.on('close', ()=>callback());
 };
 
@@ -204,14 +201,14 @@ const fileUpdated = (done)=>{
   });
 };
 
-watcher(['./pages/**/*.md', './posts/**/*.md', './index.html'], fileUpdated);
+watcher(['/pages/**/*.md', '/posts/**/*.md', '/template.html'].map((fileName)=>__dirname+fileName), fileUpdated);
 build(()=>{});
 
 const config = new server.Config;
 
 config.contentType.woff = 'application/x-font-woff';
 config.port = 8080;
-config.root = path.resolve(__dirname, 'site');
+config.root = path.resolve(__dirname, '../');
 
 server.deploy(config);
 ```
@@ -311,16 +308,6 @@ fi
 if [[ $PUSH ]]; then
   echo "Pushing changes to git"
   git push origin master
-fi
-
-if [[ $PUBLISH && $ORIG_VERSION != $VERSION ]]; then
-  read -p "Are you sure your ready to publish? (y/n) " -n 1 -r
-  echo    # (optional) move to a new line
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    git subtree push --prefix site origin gh_pages
-  else
-    echo "Ok try again when your ready"
-  fi
 fi
 
 echo "Done"

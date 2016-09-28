@@ -1,11 +1,7 @@
 #!/bin/bash
 
-rm -rf site
-mkdir site
-cp -r fonts/ site/fonts/
-cp -r images/ site/images/
-cp -r js/ site/js/
-cp -r style/ site/style/
+rm -rf posts/
+rm -rf pages/
 
 rm -f style/syntax.css
 cd solarized-dark-syntax/
