@@ -1,0 +1,1 @@
+This is the static site and generator for https://anarchistengineer.github.io check out the site for a writeup on exactly how this was done.  Feel free to submit PR's or ideas, but don't get your butt hurt if they don't get accepted ;)
