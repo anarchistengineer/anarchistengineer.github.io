@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'FixedsysExcelsior301Regular';
+  src: url('/fonts/fsex300-webfont.eot');
+  src: url('/fonts/fsex300-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/fsex300-webfont.woff') format('woff'),
+       url('/fonts/fsex300-webfont.ttf') format('truetype'),
+       url('/fonts/fsex300-webfont.svg#FixedsysExcelsior301Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  font-smooth:never;
+}
+
+body{
+  background: black;
+  background-image: url('/images/page_bg.png');
+  color: #090;
+  font-family: 'FixedsysExcelsior301Regular', Terminal, monospace;
+  font-size: 1.25em;
+  margin: 1em;
+}
+
+hr{
+  border-color: #090;
+}
+
+a{
+  color: limegreen;
+}
+
+a:hover,
+a:focus,
+a:active{
+  outline: none;
+  border: 1px limegreen;
+}
+
+.fist{
+  float: right;
+}
+
+.pageheader{
+  border-bottom: 1px solid #090;
+  padding-bottom: 1em;
+}
+
+.pageheader h1{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.pageheader h1 a{
+  color: #090;
+  text-decoration: none;
+}
+
+.pageheader p.subtitle{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.pageheader ul.nav{
+  list-style: none;
+  float: right
+}
+
+.pageheader ul.nav li{
+  display: inline;
+}
+
+.pageheader ul.nav li a{
+  text-decoration: none;
+  padding: 0 0.5em;
+}
+
+.pageheader ul.nav li a.active{
+  text-decoration: none;
+  color: black;
+  background: #090;
+}
+
+.content{
+  background: black;
+  margin: 1em 0;
+  padding: 1em;
+  min-height: 400px;
+}
+
+.content pre.editor.editor-colors{
+  font-family: 'FixedsysExcelsior301Regular';
+  src: url('/fonts/fsex300-webfont.eot');
+  src: url('/fonts/fsex300-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/fsex300-webfont.woff') format('woff'),
+       url('/fonts/fsex300-webfont.ttf') format('truetype'),
+       url('/fonts/fsex300-webfont.svg#FixedsysExcelsior301Regular') format('svg');
+}
+
+.me{
+  float: left;
+  padding-right: 1em;
+}
+
+.header404{
+  font-size: 10em;
+  float: left;
+  padding: 0.1em;
+}
+
+.highlight{
+  background: #333;
+  margin: 1em;
+  border: 1px solid #999;
+}
+
+.highlight .editor{
+  margin: 0.5em;
+}
+
+footer{
+  text-align: center;
+  border-top: 1px solid #090;
+}

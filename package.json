@@ -1,0 +1,32 @@
+{
+  "name": "ae-generator",
+  "version": "0.0.1",
+  "description": "Generator and content for anarchistengineer.github.io",
+  "main": "generate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tools/build.sh; nodemon dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/anarchistengineer/anarchistengineer.github.io.git"
+  },
+  "author": "The Anarchist Engineer <jeremy.darling@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/anarchistengineer/anarchistengineer.github.io/issues"
+  },
+  "homepage": "https://github.com/anarchistengineer/anarchistengineer.github.io#readme",
+  "dependencies": {
+    "async": "^2.0.1",
+    "datejs": "^1.0.0-rc3",
+    "glob": "^7.1.0",
+    "glob-watcher": "^3.0.0",
+    "handlebars": "^4.0.5",
+    "marky-markdown": "^8.1.0",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.15.1",
+    "nasty-json": "0.0.1",
+    "node-http-server": "^6.2.1",
+    "nodemon": "^1.10.2"
+  }
+}
