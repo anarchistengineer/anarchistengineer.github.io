@@ -88,7 +88,7 @@ if [[ $PUBLISH && $ORIG_VERSION != $VERSION ]]; then
   read -p "Are you sure your ready to publish? (y/n) " -n 1 -r
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]; then
-    git subtree push --prefix site origin gh-pages
+    git subtree push --prefix site origin gh_pages
   else
     echo "Ok try again when your ready"
   fi
