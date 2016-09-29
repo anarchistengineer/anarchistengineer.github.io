@@ -15,8 +15,6 @@ So, screw it, Anarchist Ahoy!  Let's build a static site generator.
 
 *That's a fancy word for placing stuff where it belongs.*
 
-I chose to put everything basically in the root of the repo, then have the publisher script create a folder called "site" that would then be pushed to the gh-pages branch in Github using subtree's.  This was after a LOT of reading and random finds on the good ol' Google.
-
 The structure looks like:
 
  * fonts/ - Web fonts
