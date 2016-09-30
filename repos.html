@@ -25,10 +25,10 @@
     <div class="pageheader" aria-role="banner">
       <h1><a href="/index.html">Anarchist Engineer</a></h1>
       <ul class="nav">
+        <li><a class="" href="/about.html">About Me</a></li>
         <li><a class="" href="/index.html">Home</a></li>
         <li><a class="" href="/posts.html">Posts</a></li>
         <li><a class="" href="/repos.html">Code</a></li>
-        <li><a class="" href="/about.html">About Me</a></li>
         <li><a class="" href="/rss.html">RSS</a></li>
       </ul>
       <p class="subtitle">The 1990's called and they want this site back.</p>
@@ -38,9 +38,9 @@
 <p><strong>NOTE:</strong> This listing requires a browser that supports ES6.  If your&apos;s doesn&apos;t, then upgrade.</p>
 <dl id="repos"></dl>
 <script type="text/javascript">
-  const alphaSort = (a, b)=>{
-    const aLower = a.toLowerCase();
-    const bLower = b.toLowerCase();
+  const alphaSort = (on)=>(a, b)=>{
+    const aLower = a[on].toLowerCase();
+    const bLower = b[on].toLowerCase();
     if(aLower < bLower){
       return -1;
     }
@@ -51,7 +51,7 @@
   };
   Loader.get('https://api.github.com/users/anarchistengineering/repos', (err, repos)=>{
       const outputTo = document.querySelector('#repos');
-      repos.sort(alphaSort).forEach((repo)=>{
+      repos.sort(alphaSort('name')).forEach((repo)=>{
           const dt = document.createElement('dt');
           dt.innerHTML = `<a href="${repo.html_url}"><strong>${repo.name}</strong> - ${repo.html_url}</a>`;
           outputTo.appendChild(dt);
