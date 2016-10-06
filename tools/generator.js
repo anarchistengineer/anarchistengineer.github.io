@@ -70,7 +70,7 @@ const transformValue = (key, v)=>{
     return Date.parse(v);
   }
   if(/^(true|t|y|yes)$/i.exec(v)){
-    return moment(v);
+    return true;
   }
   if(/^(false|f|n|no)$/i.exec(v)){
     return false;
